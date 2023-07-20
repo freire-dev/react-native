@@ -1,98 +1,20 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
-} from "react-native";
-import { useState } from "react";
-import GoalItem from "./components/GoalItem";
-import GoalInput from "./components/GoalInput";
-import { StatusBar } from "expo-status-bar";
+import { View } from "react-native";
+import StartGame from "./screens/StartGame";
+import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet } from "react-native";
 
-export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
-  const [goals, setGoals] = useState([]);
-
-  const [modalIsVisible, setModalIsVisible] = useState(false);
-
-  const StartAddGoal = () => {
-    setModalIsVisible(true);
-  };
-
-  const endAddGoal = () => {
-    setModalIsVisible(false);
-  };
-
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoalText(enteredText);
-  };
-
-  const addGoalHandler = () => {
-    enteredGoalText != ""
-      ? setGoals((currentGoals) => [
-          ...currentGoals,
-          { text: enteredGoalText, id: Math.random().toString() },
-        ])
-      : "";
-    setEnteredGoalText("");
-    endAddGoal();
-  };
-
-  const deleteGoalHandler = (id) => {
-    setGoals((currentGoals) => {
-      return currentGoals.filter((goal) => goal.id !== id);
-    });
-  };
-
+const App = () => {
   return (
     <>
-      <StatusBar style="light" />
-      <View style={styles.appContainer}>
-        <Button
-          title="Adicione um objetivo"
-          color={"#5e0acc"}
-          onPress={StartAddGoal}
-        />
-        <GoalInput
-          addGoalHandler={addGoalHandler}
-          goalInputHandler={goalInputHandler}
-          enteredGoalText={enteredGoalText}
-          visible={modalIsVisible}
-          endAddGoal={endAddGoal}
-        />
-        <View style={styles.goalsContainer}>
-          <FlatList
-            data={goals}
-            keyExtractor={(item, index) => {
-              return item.id;
-            }}
-            renderItem={(itemData) => {
-              return (
-                <GoalItem
-                  id={itemData.item.id}
-                  itemData={itemData.item.text}
-                  deleteGoalHandler={deleteGoalHandler}
-                />
-              );
-            }}
-          ></FlatList>
-        </View>
-      </View>
+      <LinearGradient colors={['#4e0329','#ddb52f']} style={styles.rootScreen}>
+        <StartGame />
+      </LinearGradient>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  appContainer: {
-    paddingTop: 50,
-    paddingHorizontal: 16,
-    flex: 1,
-  },
-  goalsContainer: {
-    flex: 5,
-    marginTop: 15,
-  },
+  rootScreen: { flex: 1 },
 });
+
+export default App;
