@@ -1,84 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
-} from "react-native";
-import { useState } from "react";
-import GoalItem from "./components/GoalItem";
+import { View } from "react-native";
+import StartGame from "./screens/StartGame";
+import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet } from "react-native";
 
-export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
-  const [goals, setGoals] = useState([]);
-
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoalText(enteredText);
-  };
-
-  const addGoalHandler = () => {
-    enteredGoalText != ""
-      ? setGoals((currentGoals) => [
-          ...currentGoals,
-          { text: enteredGoalText, id: Math.random().toString() },
-        ])
-      : "";
-    setEnteredGoalText("");
-  };
-
+const App = () => {
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={enteredGoalText}
-          style={styles.textInput}
-          placeholder="Seu objetivo..."
-          onChangeText={goalInputHandler}
-        />
-        <Button title="Adicionar" onPress={addGoalHandler} />
-      </View>
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={goals}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-          renderItem={(itemData) => {
-            return <GoalItem itemData={itemData.item.text} />;
-          }}
-        ></FlatList>
-      </View>
-    </View>
+    <>
+      <LinearGradient colors={['#4e0329','#ddb52f']} style={styles.rootScreen}>
+        <StartGame />
+      </LinearGradient>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  appContainer: {
-    paddingTop: 50,
-    paddingHorizontal: 16,
-    flex: 1,
-  },
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "70%",
-    marginRight: 8,
-    height: 40,
-  },
-  goalsContainer: {
-    flex: 5,
-    marginTop: 15,
-  },
+  rootScreen: { flex: 1 },
 });
+
+export default App;
