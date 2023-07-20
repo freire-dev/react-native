@@ -16,7 +16,7 @@ const GoalInput = ({
           <TextInput
             value={enteredGoalText}
             style={styles.textInput}
-            placeholder="Seu objetivo..."
+            placeholder="Sua tarefa..."
             onChangeText={goalInputHandler}
           />
           <View style={styles.buttonContainer}>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#cccccc",
     width: "90%",
-    height: "7%",
+    height: 60,
     marginRight: 8,
     borderColor: "#e4d0ff",
     backgroundColor: "#e4d0ff",

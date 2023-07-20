@@ -52,7 +52,7 @@ export default function App() {
       <StatusBar style="light" />
       <View style={styles.appContainer}>
         <Button
-          title="Adicione um objetivo"
+          title="Adicione uma tarefa"
           color={"#5e0acc"}
           onPress={StartAddGoal}
         />
