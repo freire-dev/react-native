@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "reactnative",
-    "slug": "reactnative",
+    "slug": "app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "61eb93d5-6520-4dc2-a505-3c90b4f02c7f"
+      }
+    },
+    "owner": "luanfreire"
   }
 }
